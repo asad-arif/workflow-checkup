@@ -1,0 +1,29 @@
+name: Push Workflow
+
+on:
+  workflow_run:
+    workflows: ["First Workflow"]
+    types:
+      - completed
+
+jobs:
+  push-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run on push
+        run: echo "First job is running!"
+
+  second-job:
+    if: ${{ github.event.woekflow_run.conclusion == 'success'}}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run second job
+        run: echo "Second job is running!"
