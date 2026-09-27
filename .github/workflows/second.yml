@@ -2,9 +2,9 @@ name: Push Workflow
 
 on:
   workflow_run:
-  workflows:[First Workflow]
-  types:
-   - completed
+    workflows: ["First Workflow"]
+    types:
+      - completed
 
 jobs:
   push-job:
